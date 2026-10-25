@@ -1,0 +1,27 @@
+{
+  "name": "vapi-agentic-rag-voice-agent",
+  "version": "2.0.0",
+  "description": "Phone voice agent (Vapi STT/TTS) with LangChain agentic RAG: Qdrant + Gemini embeddings + Serper",
+  "type": "module",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js",
+    "ingest": "node src/ingest.js",
+    "create-assistant": "node scripts/createAssistant.js"
+  },
+  "engines": { "node": ">=18" },
+  "dependencies": {
+    "@langchain/community": "^0.3.0",
+    "@langchain/core": "^0.3.0",
+    "@langchain/google-genai": "^0.2.0",
+    "@langchain/qdrant": "^0.1.0",
+    "@langchain/textsplitters": "^0.1.0",
+    "@qdrant/js-client-rest": "^1.13.0",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.0",
+    "langchain": "^0.3.0",
+    "zod": "^3.23.8",
+    "zod-to-json-schema": "^3.23.0"
+  }
+}
