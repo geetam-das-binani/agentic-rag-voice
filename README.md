@@ -91,18 +91,3 @@ Set `AGENT_LANGUAGE` in `.env` and re-run `npm run create-assistant`:
 - Other voices (ElevenLabs, Cartesia, Google): set `VOICE_PROVIDER` and `VOICE_ID` in `.env`.
 - Llama on Groq is acceptable in Hindi; for better quality set `LLM_PROVIDER=openai`, `LLM_MODEL=gpt-4o-mini` (or a Gemini model).
 
-## Troubleshooting
-
-- Server logs `[tool] ...` lines when the agent calls a tool. No lines = Vapi cannot reach your URL or the secret doesn't match.
-- 401 -> `VAPI_WEBHOOK_SECRET` mismatch; re-run create-assistant.
-- Always answers "no results" -> run `npm run ingest`; lower `MIN_SCORE` in `src/tools.js`.
-- Dimension error -> you changed embedding model after ingesting; delete the Qdrant collection (or use a new `QDRANT_COLLECTION`) and re-run ingest.
-- npm peer-dependency conflict -> `npm install --legacy-peer-deps`.
-- Agent too slow -> use a faster model, keep tool output short (already trimmed to 3500 chars).
-
-## Customizing
-
-- Persona / behavior: `systemPrompt` in `scripts/createAssistant.js`.
-- Add a tool: create another `tool({...})` with a zod schema in `src/tools.js` and add it to the `tools` array; its Vapi definition is generated automatically.
-- Swap embeddings (OpenAI, Cohere, Ollama...): edit only `src/embeddings.js`, then re-ingest.
-- Voice, language, STT: `PRESETS` in `scripts/createAssistant.js` (or the env overrides).
